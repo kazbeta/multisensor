@@ -1,3 +1,6 @@
+#refered URL:https://www.raspberrypi-spy.co.uk/2012/09/getting-your-raspberry-pi-serial-number-using-python/
+#Getting RPi serial number
+
 def getserial():
   # Extract serial from cpuinfo file
   cpuserial = "0000000000000000"
