@@ -7,7 +7,7 @@ Picam XX <br>
 
 <h3>Audio:</h3>
 Microphone XX <br>
- <I>""</I>: XYZ; 1 minute per file; stored in <I>"Startingtime(UT).wav"</I><br>
+ <I>"abcdef"</I>: XYZ; 1 minute per file; stored in <I>"Startingtime(UT).wav"</I><br>
 
 <h3>Thermal:</h3>
 AMG8833 Grideye <br>
