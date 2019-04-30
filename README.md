@@ -1,5 +1,4 @@
-Multi sensor works with following conditions:
-Only when a motion is detected, start gatehring multiple data:
+Multi sensor works only when a motion is detected, start gatehring multiple data<br>
 
 <h3> Video:</h3>
 Picam XX <br>
