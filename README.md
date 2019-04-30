@@ -2,17 +2,17 @@ Multi sensor works with following conditions:
 Only when a motion is detected, start gatehring multiple data:
 
 <h3> Video:</h3>
- Picam XX "picamera_video.py": 640x480 resolution, 25 fps, 1 minute per file; stored in "Startingtime(UT).mp4"<br>
+ Picam XX <I>"picamera_video.py"</I>: 640x480 resolution, 25 fps, 1 minute per file; stored in <I>"Startingtime(UT).mp4"</I><br>
 
 <h3>Audio:</h3>
- Microphone XX "": XYZ; 1 minute per file; stored in "Startingtime(UT).wav"<br>
+ Microphone XX <I>""</I>: XYZ; 1 minute per file; stored in <I>"Startingtime(UT).wav"</I><br>
 
 <h3>Thermal:</h3>
- AMG8833 Grideye "thermal_AMG8833.py": 8x8 matrix, 25fps, 1 minute per file<br>
-Thermal sensor data will be stored in "Startingtime(UT)_grideye.txt"<br>
+ AMG8833 Grideye <I>"thermal_AMG8833.py"</I>: 8x8 matrix, 25fps, 1 minute per file<br>
+Thermal sensor data will be stored in <I>"Startingtime(UT)_grideye.txt"</I><br>
 
 <h3>Temperature:</h3>
- BME280 "temperature_BME280.py": temperature, pressue, humidity; every minutes<br>
+ BME280 <I>"temperature_BME280.py"</I>: temperature, pressue, humidity; every minutes<br>
 <h3>Air quality:</h3>
- SGP30 "airquality_SGP30.py": eCO2 (ppm), VOC (bpm); every minutes<br>
-Temperature and Air quality data will be stored in "Startingtime(UT)_air.txt"<br>
+ SGP30 <I>"airquality_SGP30.py"</I>: eCO2 (ppm), VOC (bpm); every minutes<br>
+Temperature and Air quality data will be stored in <I>"Startingtime(UT)_air.txt"</I><br>
