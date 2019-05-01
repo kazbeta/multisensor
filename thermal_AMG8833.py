@@ -1,6 +1,5 @@
 #gridpy
 
-
 try:
     import smbus2 as smbus
 except (ImportError):
@@ -221,19 +220,18 @@ def maprange(a, b, s):
     (a1, a2), (b1, b2) = a, b
     return b1 + ((s - a1) * (b2 - b1) / (a2 - a1))
 
-if __name__ == '__main__':
-    from time import sleep
-    from pprint import pprint
-
-    with smbus.SMBusWrapper(1) as bus:
-        print("Init GridEye88xx")
-        ge = GridEye(i2c_bus=bus)
-        print("Save Sensor Data As heatmap.png")
-        image = ge.get_sensor_data("GRAYIMAGE")[0]
-        image.save("heatmap.png", "PNG")
-        while True:
-            print("Thermistor Temperature is: %f°C" % ge.get_thermistor_temp())
-            print("Current Sensor Data:")
-            pprint(ge.get_sensor_data()[0])
-            sleep(0.5)
-
+#if __name__ == '__main__':
+#    from time import sleep
+#    from pprint import pprint
+#
+#    with smbus.SMBusWrapper(1) as bus:
+#        print("Init GridEye88xx")
+#        ge = GridEye(i2c_bus=bus)
+#        print("Save Sensor Data As heatmap.png")
+#        image = ge.get_sensor_data("GRAYIMAGE")[0]
+#        image.save("heatmap.png", "PNG")
+#        while True:
+#            print("Thermistor Temperature is: %f°C" % ge.get_thermistor_temp())
+#            print("Current Sensor Data:")
+#            pprint(ge.get_sensor_data()[0])
+#            sleep(0.5)
