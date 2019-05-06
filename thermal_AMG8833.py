@@ -136,8 +136,8 @@ class GridEye():
 
     def get_thermistor_temp(self, raw=False):
         
-        #returns the thermistor temperature in .25°C resolution
-        #TODO: high res option with possible 0.0625℃ resolution
+        #returns the thermistor temperature in .25 C resolution
+        #TODO: high res option with possible 0.0625 C resolution
         
         upper = self.read_byte(self.i2c["address"], 0x0F) << 6
         lower = self.read_byte(self.i2c["address"], 0x0E) >> 2
