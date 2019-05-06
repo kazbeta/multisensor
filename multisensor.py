@@ -43,6 +43,7 @@ thread_airquality = threading.Thread(target = airquality.getvalue())
 try:
     time.sleep(2) # to stabilize sensor
     SerialNumber = serial.getserial()
+    print("IR detection in progress..")
     while True:
         if GPIO.input(4):
             Startingtime = time.time()
