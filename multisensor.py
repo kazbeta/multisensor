@@ -19,7 +19,7 @@ GPIO.setup(24, GPIO.OUT)
 ##Specify the functoin in each ref
 str_video = "video.capture(25,60)"
 #str_audio =
-ge = thermal_AMG8833.GridEye(i2c_bus=bus)
+ge = grideye.GridEye(i2c_bus=bus)
 str_grideye = "ge.get_thermistor_temp()"
 str_temperature = "temperature.readBME280All()"
 str_airquality = "airquality.getvalue()"
