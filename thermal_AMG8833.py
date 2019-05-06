@@ -12,13 +12,11 @@ LICENSE = "MIT License"
 
 
 class GridEye():
-
-    """
-    GridEye class for easy handling of GridEYE AMG88 i2c modules.
-    Although Grid-EYE%20SPECIFICATIONS(Reference).pdf may still be helpful.
-
-    TODO: Interrupts
-    """
+    
+    ##GridEye class for easy handling of GridEYE AMG88 i2c modules.
+    ##Although Grid-EYE%20SPECIFICATIONS(Reference).pdf may still be helpful.
+    ##TODO: Interrupts
+    
 
     def __init__(self, i2c_address=0x69, i2c_bus=smbus.SMBus(1)):
         self.i2c = {"bus": i2c_bus, "address": i2c_address}
@@ -59,17 +57,17 @@ class GridEye():
         self.write_byte(self.i2c["address"], 0x02, fps)
 
     def get_interrupt_ctrl(self):
-        """
-        returns a boolean tuple (interupt_enabled, interupt_mode)
-        """
+        
+        ##returns a boolean tuple (interupt_enabled, interupt_mode)
+        
         intc = self.read_byte(self.i2c["address"], 0x03)
         return (1 & intc is 1), (2 & intc is 2)
 
     def set_interupt_ctrl(self, enabled=False, mode=False):
-        """
-        mode = False -> difference mode
-        mode = True  -> absolute mode
-        """
+        
+        ##mode = False -> difference mode
+        ##mode = True  -> absolute mode
+        
         intc = 0x0
         if enabled:
             intc += 1
@@ -78,14 +76,14 @@ class GridEye():
         self.write_byte(self.i2c["address"], 0x03, intc)
 
     def get_states(self):
-        """
-        returns a tuple of (
-            Interrupt Outbreak,
-            Temperature Output Overflow,
-            Thermistor Temperature Output Overflow
-            )
-        from 0x04
-        """
+        
+        ##returns a tuple of (
+        #    Interrupt Outbreak,
+        #    Temperature Output Overflow,
+        #    Thermistor Temperature Output Overflow
+        #    )
+        #from 0x04
+        
         state = self.read_byte(self.i2c["address"], 0x04)
         return (1 & state is 1), (2 & state is 2), (4 & state is 4)
 
@@ -121,10 +119,10 @@ class GridEye():
         self.write_byte(self.i2c["address"], 0x0D, hysteresis_level[0])
 
     def get_interrupts(self, reset=False):
-        """
-        Returns current interrupts and optionally resets the interrupt table.
-        Format is a list of tuples (line, pixel in line)
-        """
+        
+        #Returns current interrupts and optionally resets the interrupt table.
+        #Format is a list of tuples (line, pixel in line)
+        
         interrupts = []
         data = self.i2c["bus"].read_i2c_block_data(self.i2c["address"], 0x10, 8)
         for i in range(8):
@@ -137,10 +135,10 @@ class GridEye():
         return interrupts
 
     def get_thermistor_temp(self, raw=False):
-        """
-        returns the thermistor temperature in .25°C resolution
-        TODO: high res option with possible 0.0625℃ resolution
-        """
+        
+        #returns the thermistor temperature in .25°C resolution
+        #TODO: high res option with possible 0.0625℃ resolution
+        
         upper = self.read_byte(self.i2c["address"], 0x0F) << 6
         lower = self.read_byte(self.i2c["address"], 0x0E) >> 2
         complete = upper + lower
@@ -153,15 +151,16 @@ class GridEye():
             return complete
 
     def get_sensor_data(self, mode="TEMP", remap=True):
-        """
-        returns the sensor data, supporting different modes
-        "TEMP" -> [8][8] Array of temp values
-        "GRAYIMAGE" -> a 8x8 pixel image with optional remapping
-        +
-        min, max values as [value, x,y]
-        NOTE: READ is done per line. the raspberry pi doesn't like reading 128
-        bytes at once.
-        """
+        
+        #returns the sensor data, supporting different modes
+        #"TEMP" -> [8][8] Array of temp values
+        #"GRAYIMAGE" -> a 8x8 pixel image with optional remapping
+        #+
+        #min, max values as [value, x,y]
+        #NOTE: READ is done per line. the raspberry pi doesn't like reading 128
+        #bytes at once.
+        #
+        
         lines = []
         minv = [500, 0, 0]
         maxv = [-500, 0, 0]
@@ -201,22 +200,22 @@ class GridEye():
 
 
 def int2twoscomplement(value, bits=12):
-    """returning a integer which is equal to value as two's complement"""
+    #returning a integer which is equal to value as two's complement
     if value > 0:
         return value
     else:
         return (1 << bits) + num
 def split_in_2bytes(value):
-    """
-    Returns a tuple with 2 integers (upper,lower) matching the according bytes
-    The AMG88 usually uses 2 byte to store 12bit values.
-    """
+    
+    #Returns a tuple with 2 integers (upper,lower) matching the according bytes
+    #The AMG88 usually uses 2 byte to store 12bit values.
+    
     upper = value >> 9
     lower = 0b011111111 & value
     return (upper, lower)
 
 def maprange(a, b, s):
-    """remap values linear to a new range"""
+    #remap values linear to a new range
     (a1, a2), (b1, b2) = a, b
     return b1 + ((s - a1) * (b2 - b1) / (a2 - a1))
 
