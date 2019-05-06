@@ -52,7 +52,7 @@ try:
                 ##?format/dimension? Getting data from grideye in 25fps
                 value0 = thread_grideye.start()
                 ##?format/dimension? Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
-                if i % 25 = 0:
+                if i % 25 == 0:
                     value1 = thread_temperature.start()
                     value2 = thread_airquality.start()
                 else:
