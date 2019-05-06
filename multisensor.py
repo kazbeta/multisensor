@@ -2,7 +2,7 @@ import os
 import threading
 import time
 import RPi.GPIO as GPIO
-import smbus2 as smbus
+#import smbus2 as smbus
 
 ##local references
 import picamera_video as video
@@ -20,8 +20,9 @@ GPIO.setup(24, GPIO.OUT)
 ##Specify the functoin in each ref
 str_video = "video.capture(25,60)"
 #str_audio =
-ge = grideye.GridEye(i2c_bus=smbus.SMBusWrapper(1))
-str_grideye = "ge.get_thermistor_temp()"
+#ge = grideye.GridEye(i2c_bus=smbus.SMBusWrapper(1))
+#str_grideye = "ge.get_thermistor_temp()"
+sstr_grideye = "GridEye.get_thermistor_temp()"
 str_temperature = "temperature.readBME280All()"
 str_airquality = "airquality.getvalue()"
 
