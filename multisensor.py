@@ -2,7 +2,7 @@ import os
 import threading
 import time
 import RPi.GPIO as GPIO
-import smbu2 as smbus
+import smbus2 as smbus
 
 ##local references
 import picamera_video as video
