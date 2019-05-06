@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 ##local references
 import picamera_video as video
-import thermal_AMG8833 as grideye
+#import thermal_AMG8833 as grideye
 import temperature_BME280 as temperature
 import getCPUserial as serial
 #import someaudio as audio
@@ -15,7 +15,7 @@ import airquality_SGP30 as airquality
 ##GPIO setting up for PIR and LED
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN)
-GPIO.setup(24, GPIO.OUT)
+#GPIO.setup(24, GPIO.OUT)
 
 ##Specify the functoin in each ref
 #str_video = "video.capture(25,60)"
@@ -35,7 +35,7 @@ GPIO.setup(24, GPIO.OUT)
 thread_video = threading.Thread(target = video.capture(25,60))
 #thread_audio = threading.Thread(target = )
 thread_grideye = threading.Thread(target = grideye.GridEye.get_thermistor_temp())
-thread_temperature = threading.Thread(target = temperature.reagBME280All())
+#thread_temperature = threading.Thread(target = temperature.reagBME280All())
 thread_airquality = threading.Thread(target = airquality.getvalue())
 
 
@@ -47,7 +47,7 @@ try:
         if GPIO.input(4):
             Startingtime = time.time()
             Log = open("%s" % Startingtime + "_%s.txt" % SerialNumber,'a')
-            GPIO.output(24, True)
+#            GPIO.output(24, True)
 #            time.sleep(0.5) #LED turns on for 0.5 sec
 #            GPIO.output(24, False)
             
@@ -58,7 +58,7 @@ try:
             
             for i in range(750):
                 ##?format/dimension? Getting data from grideye in 25fps
-                value0 = thread_grideye.start()
+#                value0 = thread_grideye.start()
                 ##?format/dimension? Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
                 if i % 25 == 0:
                     value1 = thread_temperature.start()
@@ -67,7 +67,7 @@ try:
                     value1 = "NA"
                     value2 = "NA"
                 ##Writing gatehred values
-                Log.write("%s," % value0)
+ #               Log.write("%s," % value0)
                 Log.write("%s," % value1)
                 Log.write("%s\n" % value2)                
                 time.sleep(1/25)
