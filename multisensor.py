@@ -9,7 +9,7 @@ import thermal_AMG8833 as grideye
 import temperature_BME280 as temperature
 import getCPUserial as serial
 #import someaudio as audio
-import airquality_Sgp30 as airquality
+import airquality_SGP30 as airquality
 
 ##GPIO setting up for PIR and LED
 GPIO.setmode(GPIO.BCM)
