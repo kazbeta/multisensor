@@ -230,7 +230,7 @@ def maprange(a, b, s):
 #        image = ge.get_sensor_data("GRAYIMAGE")[0]
 #        image.save("heatmap.png", "PNG")
 #        while True:
-#            print("Thermistor Temperature is: %f°C" % ge.get_thermistor_temp())
+#            print("Thermistor Temperature is: %fC" % ge.get_thermistor_temp())
 #            print("Current Sensor Data:")
 #            pprint(ge.get_sensor_data()[0])
 #            sleep(0.5)
