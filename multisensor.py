@@ -18,20 +18,26 @@ GPIO.setup(4, GPIO.IN)
 GPIO.setup(24, GPIO.OUT)
 
 ##Specify the functoin in each ref
-str_video = "video.capture(25,60)"
+#str_video = "video.capture(25,60)"
 #str_audio =
 #ge = grideye.GridEye(i2c_bus=smbus.SMBusWrapper(1))
 #str_grideye = "ge.get_thermistor_temp()"
-str_grideye = "GridEye.get_thermistor_temp()"
-str_temperature = "temperature.readBME280All()"
-str_airquality = "airquality.getvalue()"
+#str_grideye = "GridEye.get_thermistor_temp()"
+#str_temperature = "temperature.readBME280All()"
+#str_airquality = "airquality.getvalue()"
 
 ##generating threads
-thread_video = threading.Thread(target = str_video)
+#thread_video = threading.Thread(target = str_video)
 #thread_audio = threading.Thread(target = str_audio)
-thread_grideye = threading.Thread(target = str_grideye)
-thread_temperature = threading.Thread(target = str_temperature)
-thread_airquality = threading.Thread(target = str_airquality)
+#thread_grideye = threading.Thread(target = str_grideye)
+#thread_temperature = threading.Thread(target = str_temperature)
+#thread_airquality = threading.Thread(target = str_airquality)
+thread_video = threading.Thread(target = video.capture(25,60))
+#thread_audio = threading.Thread(target = )
+thread_grideye = threading.Thread(target = GridEye.get_thermistor_temp())
+thread_temperature = threading.Thread(target = temperature.reagBME280All())
+thread_airquality = threading.Thread(target = airquality.getvalue())
+
 
 ##main
 try:
