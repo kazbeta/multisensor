@@ -34,8 +34,8 @@ GPIO.setup(4, GPIO.IN)
 #thread_airquality = threading.Thread(target = str_airquality)
 thread_video = threading.Thread(target = video.capture(25,60))
 #thread_audio = threading.Thread(target = )
-thread_grideye = threading.Thread(target = grideye.GridEye.get_thermistor_temp())
-#thread_temperature = threading.Thread(target = temperature.reagBME280All())
+#thread_grideye = threading.Thread(target = grideye.GridEye.get_thermistor_temp())
+thread_temperature = threading.Thread(target = temperature.reagBME280All())
 thread_airquality = threading.Thread(target = airquality.getvalue())
 
 
