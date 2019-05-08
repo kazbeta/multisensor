@@ -422,7 +422,7 @@ thread_video = threading.Thread(target = get_video(30,25))
 #thread_airquality = threading.Thread(target = str_airquality)
 
 try:
-    time.sleep(2) # to stabilize sensor
+    time.sleep(10) # to stabilize sensor
     while True:
         if GPIO.input(4):
             #Turn on LED while getting data
