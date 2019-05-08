@@ -427,9 +427,11 @@ try:
     
     while True:
         if GPIO.input(4):
+            Startingtime = time.time()
+            Log = open("%s" % Startingtime + "_%s.txt" % SerialNumber,'a')
             #Turn on LED while getting data
             GPIO.output(6, True)
-            print(time.time()),
+            print(Startingtime),
             print("Motion Detected. Data collection in progress...")
             time.sleep(0.001)
             #Picamera
