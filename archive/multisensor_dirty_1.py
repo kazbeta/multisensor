@@ -427,7 +427,6 @@ try:
         if GPIO.input(4):
             #Turn on LED while getting data
             GPIO.output(6, True)
-
             print(time.time()),
             print("Motion Detected. Data collection in progress...")
             #Picamera
