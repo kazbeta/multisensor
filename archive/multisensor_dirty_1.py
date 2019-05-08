@@ -422,7 +422,7 @@ def maprange(a, b, s):
 #thread_airquality = threading.Thread(target = str_airquality)
 
 try:
-    time.sleep(10) # to stabilize sensor
+    time.sleep(3) # to stabilize sensor
     GPIO.output(6, False)
     
     while True:
