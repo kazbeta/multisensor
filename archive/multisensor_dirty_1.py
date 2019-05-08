@@ -424,7 +424,7 @@ def maprange(a, b, s):
 try:
     time.sleep(10) # to stabilize sensor
     GPIO.output(6, False)
-
+    
     while True:
         if GPIO.input(4):
             #Turn on LED while getting data
@@ -459,5 +459,5 @@ try:
                     GPIO.output(6, False)
         GPIO.output(6, False)
 
-    except:
-        GPIO.cleanup()
+except:
+    GPIO.cleanup()
