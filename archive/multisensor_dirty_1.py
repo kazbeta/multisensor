@@ -451,7 +451,7 @@ try:
             time.sleep(0.001)
             #Picamera
             #thread_video
-            with smbus.SMBusWrapper(1) as bus:
+            with smbus2.SMBusWrapper(1) as bus:
                 for i in range(750):
                     #Getting data from grideye in 25fps
                     GPIO.output(6, True)
