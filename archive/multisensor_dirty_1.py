@@ -198,6 +198,7 @@ def get_video(sec,fps):
     camera.stop_recording()
     os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
     os.system("rm %s.h264" % filename)
+    return interrupts
 
 ########Picamera##########
 
