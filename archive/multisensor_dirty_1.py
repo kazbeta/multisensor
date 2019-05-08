@@ -405,6 +405,21 @@ def maprange(a, b, s):
 
 ########AMG8833##########
 
+########Serial Number##########
+def getserial():
+  # Extract serial from cpuinfo file
+  cpuserial = "0000000000"
+  try:
+    f = open('/proc/cpuinfo','r')
+    for line in f:
+      if line[0:6]=='Serial':
+        cpuserial = line[10:26]
+    f.close()
+  except:
+    cpuserial = "ERROR000000000"
+  return cpuserial
+########Serial Number##########
+
 ##generating threads
 #thread_video = threading.Thread(target = 
 #                                filename = str(time.time())
@@ -424,7 +439,7 @@ def maprange(a, b, s):
 try:
     time.sleep(3) # to stabilize sensor
     GPIO.output(6, False)
-    
+    SerialNumber = getserial()
     while True:
         if GPIO.input(4):
             Startingtime = time.time()
@@ -462,4 +477,4 @@ try:
         GPIO.output(6, False)
 
 except KeyboardInterrupt:
-    GPIO.cleanup()
+#    GPIO.cleanup()
