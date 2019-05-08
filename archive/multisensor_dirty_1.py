@@ -459,5 +459,5 @@ try:
                     GPIO.output(6, False)
         GPIO.output(6, False)
 
-#except:
-#    GPIO.cleanup()
+    except:
+        GPIO.cleanup()
