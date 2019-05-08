@@ -406,17 +406,17 @@ def maprange(a, b, s):
 ########AMG8833##########
 
 ##generating threads
-thread_video = threading.Thread(target = 
-                                filename = str(time.time())
-                                camera = picamera.PiCamera()
-                                camera.resolution = (640, 480)
-                                camera.framerate = 25
-                                camera.start_recording(filename + ".h264")
-                                camera.wait_recording(30)
-                                camera.stop_recording()
-                                os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
-                                os.system("rm %s.h264" % filename)
-                               )
+#thread_video = threading.Thread(target = 
+#                                filename = str(time.time())
+#                                camera = picamera.PiCamera()
+#                                camera.resolution = (640, 480)
+#                                camera.framerate = 25
+#                                camera.start_recording(filename + ".h264")
+#                                camera.wait_recording(30)
+#                                camera.stop_recording()
+#                                os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
+#                                os.system("rm %s.h264" % filename)
+#                               )
 #thread_grideye = threading.Thread(target = str_grideye)
 #thread_temperature = threading.Thread(target = str_temperature)
 #thread_airquality = threading.Thread(target = str_airquality)
@@ -433,7 +433,7 @@ try:
             print("Motion Detected. Data collection in progress...")
             time.sleep(0.001)
             #Picamera
-            thread_video
+            #thread_video
             with smbus.SMBusWrapper(1) as bus:
                 for i in range(750):
                     #Getting data from grideye in 25fps
