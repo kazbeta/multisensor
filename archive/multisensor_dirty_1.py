@@ -437,6 +437,7 @@ try:
             with smbus.SMBusWrapper(1) as bus:
                 for i in range(750):
                     #Getting data from grideye in 25fps
+                    GPIO.output(6, True)
                     ge = GridEye(i2c_bus=bus)
                     AMG8833_value = ge.get_thermistor_temp()
                     #Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
@@ -455,6 +456,7 @@ try:
                     Log.write("%s," % temperature,pressure,humidity)
                     Log.write("%s\n" % sgp30_value)
                     time.sleep(1/25)
+                    GPIO.output(6, False)
         GPIO.output(6, False)
 
 except:
