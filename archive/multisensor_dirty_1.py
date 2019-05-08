@@ -461,4 +461,3 @@ try:
 
 #except:
 #    GPIO.cleanup()
-
