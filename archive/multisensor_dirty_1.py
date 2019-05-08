@@ -161,10 +161,10 @@ def readBME280All(addr=DEVICE):
 from smbus2 import SMBusWrapper
 from sgp30 import Sgp30
 
-with SMBusWrapper(1) as bus:
-    sgp=Sgp30(bus,baseline_filename="/tmp/mySGP30_baseline") #things thing with the baselinefile is dumb and will be changed in the future
+#with SMBusWrapper(1) as bus:
+#    sgp=Sgp30(bus,baseline_filename="/tmp/mySGP30_baseline") #things thing with the baselinefile is dumb and will be changed in the future
 #    sgp.i2c_geral_call() #WARNING: Will reset any device on teh i2cbus that listens for general call
-    sgp.init_sgp()
+#    sgp.init_sgp()
 
 #while True:
 #    time.sleep(1)
@@ -188,17 +188,6 @@ import os
 #os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
 #os.system("rm %s.h264" % filename)
 
-def get_video(sec,fps):
-    filename = str(time.time())
-    camera = picamera.PiCamera()
-    camera.resolution = (640, 480)
-    camera.framerate = fps
-    camera.start_recording(filename + ".h264")
-    camera.wait_recording(sec)
-    camera.stop_recording()
-    os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
-    os.system("rm %s.h264" % filename)
-    return interrupts
 
 ########Picamera##########
 
@@ -417,7 +406,17 @@ def maprange(a, b, s):
 ########AMG8833##########
 
 ##generating threads
-thread_video = threading.Thread(target = get_video(30,25))
+thread_video = threading.Thread(target = 
+                                filename = str(time.time())
+                                camera = picamera.PiCamera()
+                                camera.resolution = (640, 480)
+                                camera.framerate = 25
+                                camera.start_recording(filename + ".h264")
+                                camera.wait_recording(30)
+                                camera.stop_recording()
+                                os.system("MP4Box -add %s.h264" % filename + " %s.mp4" % time.time())
+                                os.system("rm %s.h264" % filename)
+                               )
 #thread_grideye = threading.Thread(target = str_grideye)
 #thread_temperature = threading.Thread(target = str_temperature)
 #thread_airquality = threading.Thread(target = str_airquality)
