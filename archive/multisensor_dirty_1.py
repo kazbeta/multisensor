@@ -461,5 +461,5 @@ try:
                     GPIO.output(6, False)
         GPIO.output(6, False)
 
-except:
+except KeyboardInterrupt:
     GPIO.cleanup()
