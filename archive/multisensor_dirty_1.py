@@ -477,4 +477,4 @@ try:
         GPIO.output(6, False)
 
 except KeyboardInterrupt:
-#    GPIO.cleanup()
+    GPIO.cleanup()
