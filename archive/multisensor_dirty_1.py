@@ -470,7 +470,7 @@ try:
                         sgp30_value = "NA"
                     ##Writing gatehred values
                     Log.write("%s," % AMG8833_value)
-                    Log.write("%s," % temperature,pressure,humidity)
+                    Log.write("," temperature "," pressure "," humidity)
                     Log.write("%s\n" % sgp30_value)
                     time.sleep(1/25)
                     GPIO.output(6, False)
