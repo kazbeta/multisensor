@@ -438,7 +438,7 @@ try:
                     ge = GridEye(i2c_bus=bus)
                     AMG8833_value = ge.get_thermistor_temp()
                     #Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
-                    if i % 25 = 0:
+                    if i % 25 == 0:
                         #BME280
                         temperature,pressure,humidity = readBME280All()
                         #SGP30
