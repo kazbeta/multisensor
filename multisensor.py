@@ -10,7 +10,7 @@ import picamera_video as video
 import temperature_BME280 as temperature
 import getCPUserial as serial
 #import someaudio as audio
-import airquality_SGP30 as airquality
+#import airquality_SGP30 as airquality
 
 ##GPIO setting up for PIR and LED
 GPIO.setmode(GPIO.BCM)
@@ -36,7 +36,7 @@ thread_video = threading.Thread(target = video.capture(25,60))
 #thread_audio = threading.Thread(target = )
 #thread_grideye = threading.Thread(target = grideye.GridEye.get_thermistor_temp())
 thread_temperature = threading.Thread(target = temperature.readBME280All())
-thread_airquality = threading.Thread(target = airquality.getvalue())
+#thread_airquality = threading.Thread(target = airquality.getvalue())
 
 
 ##main
