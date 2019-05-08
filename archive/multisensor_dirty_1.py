@@ -423,12 +423,15 @@ thread_video = threading.Thread(target = get_video(30,25))
 
 try:
     time.sleep(10) # to stabilize sensor
+    GPIO.output(6, False)
+
     while True:
         if GPIO.input(4):
             #Turn on LED while getting data
             GPIO.output(6, True)
             print(time.time()),
             print("Motion Detected. Data collection in progress...")
+            time.sleep(0.001)
             #Picamera
             thread_video
             with smbus.SMBusWrapper(1) as bus:
