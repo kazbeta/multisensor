@@ -454,7 +454,7 @@ try:
             Log = open("%s" % Startingtime + "_%s.txt" % SerialNumber,'a')
             #Turn on LED while getting data
 #            GPIO.output(6, True)
-            thread_blink
+#            thread_blink
             print(Startingtime),
             print("Motion Detected. Data collection in progress...")
             time.sleep(0.001)
