@@ -420,6 +420,12 @@ def getserial():
   return cpuserial
 ########Serial Number##########
 
+def blink():
+    GPIO.output(6, True)
+    time.sleep(0.2)
+    GPIO.output(6, False)
+    time.sleep(0.2)
+
 ##generating threads
 #thread_video = threading.Thread(target = 
 #                                filename = str(time.time())
@@ -435,6 +441,7 @@ def getserial():
 #thread_grideye = threading.Thread(target = str_grideye)
 #thread_temperature = threading.Thread(target = str_temperature)
 #thread_airquality = threading.Thread(target = str_airquality)
+thread_blink = threading.Thread(target = blink())
 
 try:
     time.sleep(3) # to stabilize sensor
@@ -445,7 +452,8 @@ try:
             Startingtime = time.time()
             Log = open("%s" % Startingtime + "_%s.txt" % SerialNumber,'a')
             #Turn on LED while getting data
-            GPIO.output(6, True)
+#            GPIO.output(6, True)
+            thread_blink
             print(Startingtime),
             print("Motion Detected. Data collection in progress...")
             time.sleep(0.001)
@@ -454,7 +462,7 @@ try:
             with SMBusWrapper(1) as bus:
                 for i in range(750):
                     #Getting data from grideye in 25fps
-                    GPIO.output(6, True)
+#                    GPIO.output(6, True)
                     ge = GridEye(i2c_bus=bus)
                     AMG8833_value = ge.get_sensor_data()[0]
                     #Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
@@ -473,9 +481,9 @@ try:
                     Log.write("%s," % temperature)
                     Log.write("%s," % pressure)
                     Log.write("%s," % humidity)
-#                    Log.write("%s\n" % sgp30_value)
+                    Log.write("%s\n" % sgp30_value)
                     time.sleep(1/25)
-                    GPIO.output(6, False)
+#                    GPIO.output(6, False)
         GPIO.output(6, False)
 
 except KeyboardInterrupt:
