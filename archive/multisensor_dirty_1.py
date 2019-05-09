@@ -456,7 +456,7 @@ try:
                     #Getting data from grideye in 25fps
                     GPIO.output(6, True)
                     ge = GridEye(i2c_bus=bus)
-                    AMG8833_value = ge.get_thermistor_temp()
+                    AMG8833_value = ge.get_sensor_data()[0]
                     #Getting data from BMP280 and SGP30 in 1 fps (putting NA for most points)
                     if i % 25 == 0:
                         #BME280
