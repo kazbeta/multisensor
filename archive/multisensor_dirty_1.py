@@ -322,49 +322,49 @@ class GridEye():
         else:
             return complete
 
-def get_sensor_data(self, mode="TEMP", remap=False):
-    """
-    returns the sensor data, supporting different modes
-    "TEMP" -> [8][8] Array of temp values
-    "GRAYIMAGE" -> a 8x8 pixel image with optional remapping
-    +
-    min, max values as [value, x,y]
-    NOTE: READ is done per line. the raspberry pi doesn't like reading 128 bytes at once.
-    """
-    lines = []
-    minv = [500, 0, 0]
-    maxv = [-500, 0, 0]
-    for line in range(8):
-        offset = 0x80+line*16
-        block = self.i2c["bus"].read_i2c_block_data(self.i2c["address"], offset, 16)
-        values = []
-        for i in range(0, 16, 2):
-            upper = block[i+1] << 8
-            lower = block[i]
-            val = upper + lower
-            if 2048 & val == 2048:
-                val -= 4096
-                val = val/4
-            if val < minv[0]:
-                minv = [val, i//2, line]
-            if val > maxv[0]:
-                maxv = [val, i//2, line]
-            values.append(val)
-        lines.append(values)
-    if mode is "TEMP":
-        return lines, minv, maxv
-    elif mode is "GRAYIMAGE":
-        img = Image.new("L", (8, 8))
-        pixel = img.load()
-        for i in range(8):
-            for j in range(8):
-                if remap:
-                    value = maprange((minv[0], maxv[0]), (0, 255), lines[i][j])
-                    value = (int(value),)
-                else:
-                    value = (int(lines[i][j]), )
-                pixel[i, j] = value
-        return img, minv, maxv
+    def get_sensor_data(self, mode="TEMP", remap=False):
+        """
+        returns the sensor data, supporting different modes
+        "TEMP" -> [8][8] Array of temp values
+        "GRAYIMAGE" -> a 8x8 pixel image with optional remapping
+        +
+        min, max values as [value, x,y]
+        NOTE: READ is done per line. the raspberry pi doesn't like reading 128 bytes at once.
+        """
+        lines = []
+        minv = [500, 0, 0]
+        maxv = [-500, 0, 0]
+        for line in range(8):
+            offset = 0x80+line*16
+            block = self.i2c["bus"].read_i2c_block_data(self.i2c["address"], offset, 16)
+            values = []
+            for i in range(0, 16, 2):
+                upper = block[i+1] << 8
+                lower = block[i]
+                val = upper + lower
+                if 2048 & val == 2048:
+                    val -= 4096
+                    val = val/4
+                if val < minv[0]:
+                    minv = [val, i//2, line]
+                if val > maxv[0]:
+                    maxv = [val, i//2, line]
+                values.append(val)
+            lines.append(values)
+        if mode is "TEMP":
+            return lines, minv, maxv
+        elif mode is "GRAYIMAGE":
+            img = Image.new("L", (8, 8))
+            pixel = img.load()
+            for i in range(8):
+                for j in range(8):
+                    if remap:
+                        value = maprange((minv[0], maxv[0]), (0, 255), lines[i][j])
+                        value = (int(value),)
+                    else:
+                        value = (int(lines[i][j]), )
+                    pixel[i, j] = value
+            return img, minv, maxv
 
 
 def int2twoscomplement(value, bits=12):
