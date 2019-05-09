@@ -322,7 +322,7 @@ class GridEye():
         else:
             return complete
 
-def get_sensor_data(self, mode="TEMP", remap=True):
+def get_sensor_data(self, mode="TEMP", remap=False):
     """
     returns the sensor data, supporting different modes
     "TEMP" -> [8][8] Array of temp values
