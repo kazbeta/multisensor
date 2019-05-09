@@ -421,10 +421,11 @@ def getserial():
 ########Serial Number##########
 
 def blink():
-    GPIO.output(6, True)
-    time.sleep(0.2)
-    GPIO.output(6, False)
-    time.sleep(0.2)
+    while True:
+        GPIO.output(6, True)
+        time.sleep(0.2)
+        GPIO.output(6, False)
+        time.sleep(0.2)
 
 ##generating threads
 #thread_video = threading.Thread(target = 
