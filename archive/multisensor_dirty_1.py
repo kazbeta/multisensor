@@ -481,7 +481,7 @@ try:
                     Log.write("%s," % temperature)
                     Log.write("%s," % pressure)
                     Log.write("%s," % humidity)
-                    Log.write("%s\n" % sgp30_value)
+                    Log.write("%s\n" % str(sgp30_value))
                     time.sleep(1/25)
 #                    GPIO.output(6, False)
         GPIO.output(6, False)
